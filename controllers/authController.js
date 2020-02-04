@@ -1,3 +1,4 @@
+const {promisify}  = require('util')
 const User =require('./../models/userModel');
 const jwt = require('jsonwebtoken')
 const catchAsync = require('./../utils/catchAsync');
