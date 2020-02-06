@@ -3,7 +3,7 @@ const User =require('./../models/userModel');
 const jwt = require('jsonwebtoken')
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
-const sendEmail = require('./../utils/sendEmail');
+const sendEmail = require('./../utils/email');
 
 const signToken = id => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -104,7 +104,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
         'host'
     )}/api/v1/users/resetPassword/${resetToken}`;
 
-    const messsage = `Forgot your password? Submit a PATCH request with your new password and passwordConfirm to ${resetURL}.\nIf you didn't forget your password, please ignore this email!`
+    const message = `Forgot your password? Submit a PATCH request with your new password and passwordConfirm to ${resetURL}.\nIf you didn't forget your password, please ignore this email!`
 try {
     await sendEmail({
         email: user.email,
@@ -126,5 +126,7 @@ try {
 });
 
 exports.resetPassword = async(req, res, next) => {
+    //aaaaaaaaaaaaa
+    console.log('abc');
     
 }
