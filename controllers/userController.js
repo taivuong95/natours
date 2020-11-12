@@ -37,13 +37,22 @@ exports.updateMe = catchAsync(async (req, res, next) => {
             runValidators:true,
         })
 
-    res.status(200).json({
+    res.status(204).json({
         status:'success',
         data:{
             user: updatedUser
         }
     })
 });
+
+exports.deleteMe = catchAsync(async (req, res, next) => {
+    await User.findByIdAndDelete(req.user.id, {active:false})
+
+    res.status(200).json({
+        status:'success',
+        data:null
+    })
+})
 
 exports.getUser = (req, res) => {
     res.status(500).json({
