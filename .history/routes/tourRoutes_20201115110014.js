@@ -10,6 +10,7 @@ const router = express.Router();
 
 // POST /tour/4312fasdf/reviews
 // GET /tour/4312fasdf/reviews
+// GET /tour/4312fasdf/reviews/978fdfd
 
 // router.route('/:tourId/reviews').post(authController.protect, authController.restrictTo('user'), reviewController.createReview)
 
