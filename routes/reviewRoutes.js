@@ -8,13 +8,18 @@ const router = express.Router({
 // POST /tour/3424aa/reviews
 // POST /reviews
 
+    router.use(authController.protect);
+
     router
     .route('/')
     .get(reviewController.getAllReviews)
-    .post(authController.protect, authController.restrictTo('user'),
+    .post(authController.restrictTo('user'),
     reviewController.setTourUserIds,
     reviewController.createReview);
 
-    router.route('/:id').get(reviewController.getReview).patch(reviewController.updateReview).delete(reviewController.deleteReview);
+    router.route('/:id')
+    .get(reviewController.getReview)
+    .patch(authController.restrictTo('user', 'admin'),reviewController.updateReview)
+    .delete(authController.restrictTo('user', 'admin'),reviewController.deleteReview);
 
 module.exports = router;
